@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "875155638969",
+    "project_id": "food-app-20ca4",
+    "storage_bucket": "food-app-20ca4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875155638969:android:41bc2176b4b75e9012e968",
+        "android_client_info": {
+          "package_name": "com.jeels21.food_order"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875155638969-gafsfa83sdrl72pr39i6ifei9p4vgbdi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jeels21.food_order",
+            "certificate_hash": "9dff5a87583b0ae4a6997d037c1bd45f0d5a1783"
+          }
+        },
+        {
+          "client_id": "875155638969-srs2ihpdsgcroh1ttqrmehe76nlcubul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEXmH4oFfWoDmZwhxJNhGn2Nz0RQ9k3JU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875155638969-3gm948533rgvjsgui4grfeqpse4ijcqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
