@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../controllers/cart_controller.dart';
+import '../../controllers/icon_controller.dart';
+import '../../controllers/quentity_controller.dart';
 
 class Detail_Page extends StatefulWidget {
   final Map data;
@@ -20,9 +22,8 @@ class Detail_Page extends StatefulWidget {
 class _Detail_PageState extends State<Detail_Page> {
   CartController cartController = Get.find<CartController>();
   FavouriteController favouriteController = Get.find<FavouriteController>();
-
-  int i = 1;
-  bool isTapped = false;
+  QuentityController quentityController = Get.find<QuentityController>();
+  IconController iconController = Get.find<IconController>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +55,7 @@ class _Detail_PageState extends State<Detail_Page> {
             padding: const EdgeInsets.only(right: 15),
             child: GestureDetector(
               onTap: () {
-                setState(() {
-                  isTapped = !isTapped;
-                });
+                iconController.tap();
 
                 FavouriteModel data = FavouriteModel(
                   id: int.parse(widget.data['id']),
@@ -77,12 +76,19 @@ class _Detail_PageState extends State<Detail_Page> {
                 );
 
                 Navigator.pushReplacementNamed(context, '/favourite_page');
+                iconController.tap();
               },
-              child: Icon(
-                (isTapped) ? Icons.favorite : Icons.favorite_border,
-                color: (isTapped) ? Colors.pink : Colors.white,
-                size: 30,
-              ),
+              child: GetBuilder<IconController>(builder: (ic) {
+                return Icon(
+                  (iconController.icon.isTapped)
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: (iconController.icon.isTapped)
+                      ? Colors.pink
+                      : Colors.white,
+                  size: 30,
+                );
+              }),
             ),
           ),
         ],
@@ -158,13 +164,12 @@ class _Detail_PageState extends State<Detail_Page> {
                               color: Colors.green,
                             ),
                             child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      (i > 1) ? i-- : null;
-                                    });
+                                    quentityController.dicrement();
                                   },
                                   icon: const Icon(
                                     Icons.remove,
@@ -172,21 +177,23 @@ class _Detail_PageState extends State<Detail_Page> {
                                     size: 30,
                                   ),
                                 ),
-                                Text(
-                                  "$i",
-                                  style: GoogleFonts.exo2(
-                                    textStyle: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
+                                GetBuilder<QuentityController>(
+                                  builder: (qc) {
+                                    return Text(
+                                      "${quentityController.quentity.que}",
+                                      style: GoogleFonts.exo2(
+                                        textStyle: const TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                                 IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      i++;
-                                    });
+                                    quentityController.increment();
                                   },
                                   icon: const Icon(
                                     Icons.add,
@@ -296,7 +303,7 @@ class _Detail_PageState extends State<Detail_Page> {
               name: "${widget.data['name']}",
               photo: "${widget.data['photo']}",
               price: double.parse(widget.data['price']),
-              que: i,
+              que: quentityController.quentity.que,
             );
 
             cartController.addProduct(product: data);
@@ -309,6 +316,7 @@ class _Detail_PageState extends State<Detail_Page> {
               ),
             );
 
+            quentityController.empty();
             Navigator.pushReplacementNamed(context, '/cart_page');
           },
           child: Container(

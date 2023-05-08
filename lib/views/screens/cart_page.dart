@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:food_order/controllers/quentity_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../controllers/cart_controller.dart';
+import '../../controllers/icon_controller.dart';
 
 class Cart_Page extends StatefulWidget {
   const Cart_Page({Key? key}) : super(key: key);
@@ -15,6 +17,8 @@ class Cart_Page extends StatefulWidget {
 
 class _Cart_PageState extends State<Cart_Page> {
   CartController cartController = Get.find<CartController>();
+  QuentityController quentityController = Get.find<QuentityController>();
+  IconController iconController = Get.find<IconController>();
 
   @override
   Widget build(BuildContext context) {

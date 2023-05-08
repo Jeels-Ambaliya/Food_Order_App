@@ -5,6 +5,8 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food_order/controllers/favourite_controller.dart';
+import 'package:food_order/controllers/icon_controller.dart';
+import 'package:food_order/controllers/quentity_controller.dart';
 import 'package:food_order/views/screens/detail_page.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +28,8 @@ class _Home_PageState extends State<Home_Page> {
   Uint8List? imageBytes;
   CartController cartController = Get.put(CartController());
   FavouriteController favouriteController = Get.put(FavouriteController());
+  QuentityController quentityController = Get.put(QuentityController());
+  IconController iconController = Get.put(IconController());
 
   @override
   Widget build(BuildContext context) {
